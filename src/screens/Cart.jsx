@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer, Navbar } from "../components";
+import { Navbar } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
 import { Link } from "react-router-dom";
