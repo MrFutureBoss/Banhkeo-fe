@@ -3,6 +3,7 @@ import { Navbar } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
 import { Link } from "react-router-dom";
+import { TiShoppingCart } from "react-icons/ti";
 
 const Cart = () => {
   const state = useSelector((state) => state.handleCart);
@@ -13,9 +14,12 @@ const Cart = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12 py-5 bg-light text-center">
-            <h4 className="p-3 display-5">Oop! giỏ hàng của bạn đang trống</h4>
-            <Link to="/" className="btn  btn-outline-dark mx-4">
-              <i className="fa fa-arrow-left"></i> Tiếp tục shopping thui!
+            <h4 className="p-3 display-5">
+              Oop! <TiShoppingCart style={{ fontSize: "60px" }} /> của bạn đang
+              trống ?
+            </h4>
+            <Link to="/" className="btn btn-success mx-4">
+              <i className="fa fa-arrow-left"></i> Tiếp tục shopping thui!{" "}
             </Link>
           </div>
         </div>
@@ -149,7 +153,7 @@ const Cart = () => {
                       to="/checkout"
                       className="btn btn-dark btn-lg btn-block"
                     >
-                      Mua thôi
+                      Mua thôi ❤️
                     </Link>
                   </div>
                 </div>
