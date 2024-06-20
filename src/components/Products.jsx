@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 
@@ -11,13 +11,13 @@ const Products = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
-  let componentMounted = true;
+  const componentMounted = useRef(true);
 
   const dispatch = useDispatch();
 
   const addProduct = (product) => {
-    dispatch(addCart(product))
-  }
+    dispatch(addCart(product));
+  };
 
   useEffect(() => {
     const getProducts = async () => {
@@ -30,7 +30,7 @@ const Products = () => {
       }
 
       return () => {
-        componentMounted = false;
+        componentMounted.current = false;
       };
     };
 
@@ -68,23 +68,50 @@ const Products = () => {
   const filterProduct = (cat) => {
     const updatedList = data.filter((item) => item.category === cat);
     setFilter(updatedList);
-  }
+  };
   const ShowProducts = () => {
     return (
       <>
         <div className="buttons text-center py-5">
-          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => setFilter(data)}>Tất cả</button>
-          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("men's clothing")}>Bánh Bắp Tươi</button>
-          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("women's clothing")}>
+          <button
+            className="btn btn-outline-dark btn-sm m-2"
+            onClick={() => setFilter(data)}
+          >
+            Tất cả
+          </button>
+          <button
+            className="btn btn-outline-dark btn-sm m-2"
+            onClick={() => filterProduct("men's clothing")}
+          >
+            Bánh Bắp Tươi
+          </button>
+          <button
+            className="btn btn-outline-dark btn-sm m-2"
+            onClick={() => filterProduct("women's clothing")}
+          >
             Bánh Quẩy Cá
           </button>
-          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("jewelery")}>Bánh Quy</button>
-          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("electronics")}>Bánh Gạo</button>
+          <button
+            className="btn btn-outline-dark btn-sm m-2"
+            onClick={() => filterProduct("jewelery")}
+          >
+            Bánh Quy
+          </button>
+          <button
+            className="btn btn-outline-dark btn-sm m-2"
+            onClick={() => filterProduct("electronics")}
+          >
+            Bánh Gạo
+          </button>
         </div>
 
         {filter.map((product) => {
           return (
-            <div id={product.id} key={product.id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
+            <div
+              id={product.id}
+              key={product.id}
+              className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4"
+            >
               <div className="card text-center h-100" key={product.id}>
                 <img
                   className="card-img-top p-3"
@@ -106,16 +133,21 @@ const Products = () => {
                     <li className="list-group-item">Vestibulum at eros</li> */}
                 </ul>
                 <div className="card-body">
-                  <Link to={"/product/" + product.id} className="btn btn-dark m-1">
+                  <Link
+                    to={"/product/" + product.id}
+                    className="btn btn-dark m-1"
+                  >
                     Mua Ngay
                   </Link>
-                  <button className="btn btn-dark m-1" onClick={() => addProduct(product)}>
+                  <button
+                    className="btn btn-dark m-1"
+                    onClick={() => addProduct(product)}
+                  >
                     Thêm vào giỏ hàng
                   </button>
                 </div>
               </div>
             </div>
-
           );
         })}
       </>
@@ -126,7 +158,9 @@ const Products = () => {
       <div className="container my-3 py-3">
         <div className="row">
           <div className="col-12">
-            <h2 className="display-5 text-center">Những sản phẩm của chúng tôi</h2>
+            <h2 className="display-5 text-center">
+              Những sản phẩm của chúng tôi
+            </h2>
             <hr />
           </div>
         </div>
