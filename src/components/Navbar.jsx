@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="container">
         <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/">
           {" "}
-          <img src={logo} alt="Ha Tung logo" style={{height:'120px'}}></img>
+          <img src={logo} alt="Ha Tung logo" style={{height:'100px'}}></img>
         </NavLink>
         <button
           className="navbar-toggler mx-2"
@@ -48,12 +48,12 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="buttons text-center">
-            <NavLink to="/login" className="btn btn-outline-dark m-2">
+            {/* <NavLink to="/login" className="btn btn-outline-dark m-2">
               <i className="fa fa-sign-in-alt mr-1"></i> Đăng nhập
             </NavLink>
             <NavLink to="/register" className="btn btn-outline-dark m-2">
               <i className="fa fa-user-plus mr-1"></i> Đăng kí
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/cart" className="btn btn-outline-dark m-2">
               <i className="fa fa-cart-shopping mr-1"></i>
               <TiShoppingCart style={{fontSize:'28px'}} /> Giỏ hàng ({state.length}){" "}

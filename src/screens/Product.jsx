@@ -76,22 +76,22 @@ const Product = () => {
               />
             </div>
             <div className="col-md-6 col-md-6 py-5">
-              <h4 className="text-uppercase text-muted">{product.category}</h4>
-              <h1 className="display-5">{product.title}</h1>
-              <p className="lead">
+              <h4 className="text-uppercase text-muted">{product.type}</h4>
+              <h1 className="display-5">{product.name}</h1>
+              {/* <p className="lead">
                 {product.rating && product.rating.rate}{" "}
                 <i className="fa fa-star"></i>
-              </p>
+              </p> */}
               <h3 className="display-6  my-4">${product.price}</h3>
               <p className="lead">{product.description}</p>
               <button
                 className="btn btn-outline-dark"
                 onClick={() => addProduct(product)}
               >
-                Add to Cart
+                Thêm vào Giỏ hàng
               </button>
               <Link to="/cart" className="btn btn-dark mx-3">
-                Go to Cart
+                Đi tới Giỏ hàng
               </Link>
             </div>
           </div>
@@ -175,12 +175,8 @@ const Product = () => {
         <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
         <div className="row my-5 py-5">
           <div className="d-none d-md-block">
-          <h2 className="">You may also Like</h2>
-            <Marquee
-              pauseOnHover={true}
-              pauseOnClick={true}
-              speed={50}
-            >
+            <h2 className="">You may also Like</h2>
+            <Marquee pauseOnHover={true} pauseOnClick={true} speed={50}>
               {loading2 ? <Loading2 /> : <ShowSimilarProduct />}
             </Marquee>
           </div>

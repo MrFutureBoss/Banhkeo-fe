@@ -13,9 +13,9 @@ const Cart = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12 py-5 bg-light text-center">
-            <h4 className="p-3 display-5">Your Cart is Empty</h4>
+            <h4 className="p-3 display-5">Oop! giỏ hàng của bạn đang trống</h4>
             <Link to="/" className="btn  btn-outline-dark mx-4">
-              <i className="fa fa-arrow-left"></i> Continue Shopping
+              <i className="fa fa-arrow-left"></i> Tiếp tục shopping thui!
             </Link>
           </div>
         </div>
@@ -49,12 +49,12 @@ const Cart = () => {
               <div className="col-md-8">
                 <div className="card mb-4">
                   <div className="card-header py-3">
-                    <h5 className="mb-0">Item List</h5>
+                    <h5 className="mb-0">Danh sách sản phẩm</h5>
                   </div>
                   <div className="card-body">
                     {state.map((item) => {
                       return (
-                        <div key={item.id}>
+                        <div key={item._id}>
                           <div className="row d-flex align-items-center">
                             <div className="col-lg-3 col-md-12">
                               <div
@@ -64,7 +64,7 @@ const Cart = () => {
                                 <img
                                   src={item.image}
                                   // className="w-100"
-                                  alt={item.title}
+                                  alt={item.name}
                                   width={100}
                                   height={75}
                                 />
@@ -73,7 +73,7 @@ const Cart = () => {
 
                             <div className="col-lg-5 col-md-6">
                               <p>
-                                <strong>{item.title}</strong>
+                                <strong>{item.name}</strong>
                               </p>
                               {/* <p>Color: blue</p>
                               <p>Size: M</p> */}
@@ -90,10 +90,10 @@ const Cart = () => {
                                     removeItem(item);
                                   }}
                                 >
-                                  <i className="fas fa-minus"></i>
+                                  <i className="fas fa-minus">-</i>
                                 </button>
 
-                                <p className="mx-5">{item.qty}</p>
+                                <p className="mx-5">{item.qty} cái</p>
 
                                 <button
                                   className="btn px-3"
@@ -101,7 +101,7 @@ const Cart = () => {
                                     addItem(item);
                                   }}
                                 >
-                                  <i className="fas fa-plus"></i>
+                                  <i className="fas fa-plus">+</i>
                                 </button>
                               </div>
 
@@ -165,7 +165,7 @@ const Cart = () => {
     <>
       <Navbar />
       <div className="container my-3 py-3">
-        <h1 className="text-center">Cart</h1>
+        <h1 className="text-center">Giỏ hàng của bạn</h1>
         <hr />
         {state.length > 0 ? <ShowCart /> : <EmptyCart />}
       </div>

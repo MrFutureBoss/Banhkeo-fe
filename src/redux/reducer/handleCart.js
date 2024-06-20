@@ -5,22 +5,22 @@ const handleCart = (state = cart, action) => {
     switch (action.type) {
         case "ADDITEM":
             // Check if product already in cart
-            const exist = state.find((x) => x.id === product.id);
+            const exist = state.find((x) => x._id === product._id);
             if (exist) {
                 // Increase the quantity
                 return state.map((x) =>
-                    x.id === product.id ? { ...x, qty: x.qty + 1 } : x
+                    x._id === product._id ? { ...x, qty: x.qty + 1 } : x
                 );
             } else {
                 return [...state, { ...product, qty: 1 }];
             }
         case "DELITEM":
-            const exist2 = state.find((x) => x.id === product.id);
+            const exist2 = state.find((x) => x._id === product._id);
             if (exist2.qty === 1) {
-                return state.filter((x) => x.id !== exist2.id);
+                return state.filter((x) => x._id !== exist2._id);
             } else {
                 return state.map((x) =>
-                    x.id === product.id ? { ...x, qty: x.qty - 1 } : x
+                    x._id === product._id ? { ...x, qty: x.qty - 1 } : x
                 );
             }
         default:

@@ -10,9 +10,9 @@ const Checkout = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12 py-5 bg-light text-center">
-            <h4 className="p-3 display-5">No item in Cart</h4>
+            <h4 className="p-3 display-5">Hiện tại không có sản phẩm nào trong giỏ hàng</h4>
             <Link to="/" className="btn btn-outline-dark mx-4">
-              <i className="fa fa-arrow-left"></i> Continue Shopping
+              <i className="fa fa-arrow-left"></i> Tiếp tục mua sắm
             </Link>
           </div>
         </div>
@@ -38,7 +38,7 @@ const Checkout = () => {
             <div className="col-md-5 col-lg-4 order-md-last">
               <div className="card mb-4">
                 <div className="card-header py-3 bg-light">
-                  <h5 className="mb-0">Order Summary</h5>
+                  <h5 className="mb-0">Tất cả đơn hiện tại</h5>
                 </div>
                 <div className="card-body">
                   <ul className="list-group list-group-flush">
@@ -51,7 +51,7 @@ const Checkout = () => {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                       <div>
-                        <strong>Total amount</strong>
+                        <strong>Tổng cộng</strong>
                       </div>
                       <span>
                         <strong>${Math.round(subtotal + shipping)}</strong>
