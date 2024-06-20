@@ -4,9 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
-
 import { Footer, Navbar } from "../components";
-
+import { BACK_END } from "../utils/AppConfig.js";
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
@@ -24,13 +23,15 @@ const Product = () => {
     const getProduct = async () => {
       setLoading(true);
       setLoading2(true);
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+      // const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const response = await fetch(`${BACK_END}/product/${id}`);
       const data = await response.json();
       setProduct(data);
       setLoading(false);
-      const response2 = await fetch(
-        `https://fakestoreapi.com/products/category/${data.category}`
-      );
+      const response2 = await fetch(`${BACK_END}/product/type/${data.type}`);
+      // const response2 = await fetch(
+      //   `https://fakestoreapi.com/products/category/${data.category}`
+      // );
       const data2 = await response2.json();
       setSimilarProducts(data2);
       setLoading2(false);
@@ -70,7 +71,7 @@ const Product = () => {
               <img
                 className="img-fluid"
                 src={product.image}
-                alt={product.title}
+                alt={product.name}
                 width="400px"
                 height="400px"
               />
@@ -130,7 +131,7 @@ const Product = () => {
           <div className="d-flex">
             {similarProducts.map((item) => {
               return (
-                <div key={item.id} className="card mx-4 text-center">
+                <div key={item._id} className="card mx-4 text-center">
                   <img
                     className="card-img-top p-3"
                     src={item.image}
@@ -140,7 +141,7 @@ const Product = () => {
                   />
                   <div className="card-body">
                     <h5 className="card-title">
-                      {item.title.substring(0, 15)}...
+                      {item.name.substring(0, 15)}...
                     </h5>
                   </div>
                   {/* <ul className="list-group list-group-flush">
@@ -148,16 +149,18 @@ const Product = () => {
                   </ul> */}
                   <div className="card-body">
                     <Link
-                      to={"/product/" + item.id}
+                      to={"/product/" + item._id}
                       className="btn btn-dark m-1"
+                      style={{ backgroundColor: "darkblue" }}
                     >
-                      Buy Now
+                      Mua ngay
                     </Link>
                     <button
-                      className="btn btn-dark m-1"
+                      className="btn m-1"
                       onClick={() => addProduct(item)}
+                      style={{ backgroundColor: "#B8860B", color: "white" }}
                     >
-                      Add to Cart
+                      Thêm vào giỏ hàng
                     </button>
                   </div>
                 </div>
@@ -175,14 +178,13 @@ const Product = () => {
         <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
         <div className="row my-5 py-5">
           <div className="d-none d-md-block">
-            <h2 className="">You may also Like</h2>
+            <h2 className="">Bạn cũng có thể thích nó (sản phẩm tương tự)</h2>
             <Marquee pauseOnHover={true} pauseOnClick={true} speed={50}>
               {loading2 ? <Loading2 /> : <ShowSimilarProduct />}
             </Marquee>
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

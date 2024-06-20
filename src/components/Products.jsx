@@ -142,13 +142,15 @@ const Products = () => {
                 <div className="card-body">
                   <Link
                     to={"/product/" + product._id}
-                    className="btn btn-dark m-1"
+                    className="btn btn-secondary m-1"
+                    style={{ backgroundColor: "darkblue" }}
                   >
                     Mua Ngay
                   </Link>
                   <button
-                    className="btn btn-dark m-1"
+                    className="btn m-1"
                     onClick={() => addProduct(product)}
+                    style={{ backgroundColor: "#B8860B", color:'white' }}
                   >
                     Thêm vào giỏ hàng
                   </button>
