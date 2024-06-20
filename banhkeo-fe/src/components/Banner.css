@@ -1,0 +1,33 @@
+.banner {
+  height: 100%;
+  width: 100%;
+  filter: brightness(60%);
+}
+.banner-text {
+  text-align: center;
+  position: relative;
+  top: -780px;
+}
+.banner-title {
+  font-size: 80px;
+  color: white;
+}
+.banner-para {
+  color: white;
+  font-size: 36px;
+  margin: auto;
+  width: 60%;
+}
+
+/* 
+          <div>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                const credentialResponseDecloded = jwtDecode(credentialResponse.credential)
+                console.log(credentialResponseDecloded);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </div> */

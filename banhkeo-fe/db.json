@@ -1,0 +1,113 @@
+{
+  "banhs": [
+    {
+      "id": 1,
+      "name": "Bánh bắp tươi",
+      "image": "baptuoi.jpg",
+      "price": "22.000 VND",
+      "type": "quy",
+      "quantity": 100,
+      "sold": 40
+    },
+    {
+      "id": 2,
+      "name": "Bánh quẩy cá vị hành",
+      "image": "banhquayhanh.jpg",
+      "price": "6.000 VND",
+      "type": "snack",
+      "quantity": 100,
+      "sold": 40
+    },
+    {
+      "id": 3,
+      "name": "Bánh ZOO gạo nướng vị ruốc",
+      "image": "banhgaoruoc.jpg",
+      "price": "22.000 VND",
+      "type": "gao",
+      "quantity": 100,
+      "sold": 40
+    },
+    {
+      "id": 4,
+      "name": "Bánh quẩy cá vị rong biển",
+      "image": "banhquayrong.jpg",
+      "price": "6.000 VND",
+      "type": "snack",
+      "quantity": 100,
+      "sold": 30
+    },
+    {
+      "id": 5,
+      "name": "Bánh xốp nhân sữa chua",
+      "image": "banhxopsuachua.jpg",
+      "price": "25.000 VND",
+      "type": "xop",
+      "quantity": 100,
+      "sold": 40
+    },
+    {
+      "id": 6,
+      "name": "Bánh quy Goodies bơ",
+      "image": "Banhquybo.jpg",
+      "price": "76.000 VND",
+      "type": "qua tang",
+      "quantity": 100,
+      "sold": 30
+    },
+    {
+      "id": 7,
+      "name": "Bánh quy Goodies hoàng gia",
+      "image": "Goodiesvang.jpg",
+      "price": "75.000 VND",
+      "type": "qua tang",
+      "quantity": 100,
+      "sold": 30
+    },
+    {
+      "id": 8,
+      "name": "Bánh quy Hatung PHUC dịp tết",
+      "image": "phuc.jpg",
+      "price": "102.000 VND",
+      "type": "qua tang",
+      "quantity": 100,
+      "sold": 30
+    },
+    {
+      "id": 9,
+      "name": "Banh quy Merry hạt chia",
+      "image": "Merryhatchia.jpg",
+      "price": "120.000 VND",
+      "type": "qua tang",
+      "quantity": 100,
+      "sold": 30
+    },
+    {
+      "id": 10,
+      "name": "Bánh quẩy cá tỏi ớt",
+      "image": "banhquayot.jpg",
+      "price": "6.000 VND",
+      "type": "snack",
+      "quantity": 100,
+      "sold": 30
+    },
+    {
+      "id": 11,
+      "name": "Bánh quẩy cá phô mai",
+      "image": "banhquaycheese.jpg",
+      "price": "6.000 VND",
+      "type": "snack",
+      "quantity": 100,
+      "sold": 30
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
