@@ -10,7 +10,9 @@ const Checkout = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12 py-5 bg-light text-center">
-            <h4 className="p-3 display-5">Hiện tại không có sản phẩm nào trong giỏ hàng</h4>
+            <h4 className="p-3 display-5">
+              Hiện tại không có sản phẩm nào trong giỏ hàng
+            </h4>
             <Link to="/" className="btn btn-outline-dark mx-4">
               <i className="fa fa-arrow-left"></i> Tiếp tục mua sắm
             </Link>
@@ -43,7 +45,8 @@ const Checkout = () => {
                 <div className="card-body">
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                      Products ({totalItems})<span>${Math.round(subtotal)}</span>
+                      Sản Phẩm ({totalItems})
+                      <span>${Math.round(subtotal)}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                       Shipping
@@ -61,8 +64,8 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-7 col-lg-8">
-              <div className="card mb-4">
+            <div className="col-md-7 col-lg-8" style={{display:'flex',justifyContent:'center'}}>
+              {/* <div className="card mb-4">
                 <div className="card-header py-3">
                   <h4 className="mb-0">Billing address</h4>
                 </div>
@@ -275,7 +278,8 @@ const Checkout = () => {
                     </button>
                   </form>
                 </div>
-              </div>
+              </div> */}
+              <img alt="" style={{height:'fit-content', margin:'auto'}} src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1718928128/Screenshot_2024-06-21_061215_tqy29q.png"/>
             </div>
           </div>
         </div>
@@ -286,7 +290,7 @@ const Checkout = () => {
     <>
       <Navbar />
       <div className="container my-3 py-3">
-        <h1 className="text-center">Checkout</h1>
+        <h1 className="text-center">Thanh Toán</h1>
         <hr />
         {state.length ? <ShowCheckout /> : <EmptyCart />}
       </div>

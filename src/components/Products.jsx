@@ -36,6 +36,13 @@ const Products = () => {
     getProducts();
   }, []);
 
+  function formatCurrency(amount) {
+    return amount.toLocaleString("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    });
+  }
+
   const Loading = () => {
     return (
       <>
@@ -135,9 +142,9 @@ const Products = () => {
                   </p>
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item lead">{product.price} VND</li>
-                  {/* <li className="list-group-item">Dapibus ac facilisis in</li>
-                    <li className="list-group-item">Vestibulum at eros</li> */}
+                  <li className="list-group-item lead">
+                    {formatCurrency(product.price)}
+                  </li>
                 </ul>
                 <div className="card-body">
                   <Link
@@ -150,7 +157,7 @@ const Products = () => {
                   <button
                     className="btn m-1"
                     onClick={() => addProduct(product)}
-                    style={{ backgroundColor: "#B8860B", color:'white' }}
+                    style={{ backgroundColor: "#B8860B", color: "white" }}
                   >
                     Thêm vào giỏ hàng
                   </button>
