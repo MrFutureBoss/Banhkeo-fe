@@ -5,6 +5,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
 import {BACK_END} from "../utils/AppConfig.js"
+import './Text.css'
+
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -75,6 +77,11 @@ const Products = () => {
     const updatedList = data.filter((item) => item.type === cat);
     setFilter(updatedList);
   };
+
+    const filterProduct2 = (cat) => {
+      const updatedList = data.filter((item) => item.special === cat);
+      setFilter(updatedList);
+    };
   //category == type
   const ShowProducts = () => {
     return (
@@ -86,35 +93,53 @@ const Products = () => {
           >
             Tất cả
           </button>
-          <button
+          {/* <button
             className="btn btn-outline-dark btn-sm m-2"
             onClick={() => filterProduct("Bánh CRACKER")}
           >
             Bánh Cracker
-          </button>
+          </button> */}
           <button
             className="btn btn-outline-dark btn-sm m-2"
             onClick={() => filterProduct("Ăn vặt")}
           >
             Đồ ăn vặt
           </button>
-          <button
+          {/* <button
             className="btn btn-outline-dark btn-sm m-2"
             onClick={() => filterProduct("Bánh Quy")}
           >
             Bánh Quy
-          </button>
-          <button
+          </button> */}
+          {/* <button
             className="btn btn-outline-dark btn-sm m-2"
             onClick={() => filterProduct("Bánh Gạo")}
           >
-            Bánh Gạo
-          </button>
+            Bánh Gạo */}
+          {/* </button>
           <button
             className="btn btn-outline-dark btn-sm m-2"
             onClick={() => filterProduct("Bánh Xốp")}
           >
             Bánh Xốp
+          </button> */}
+          {/* <button
+            className="btn btn-outline-dark btn-sm m-2"
+            onClick={() => filterProduct2("Túi Xách")}
+          >
+            Túi Xách
+          </button> */}
+          <button
+            className="btn btn-outline-dark btn-sm m-2"
+            onClick={() => filterProduct2("Hộp")}
+          >
+            Hộp
+          </button>
+          <button
+            className="btn btn-outline-dark btn-sm m-2"
+            onClick={() => filterProduct2("Gói")}
+          >
+            Gói
           </button>
         </div>
 
@@ -144,8 +169,11 @@ const Products = () => {
                     color: "white",
                   }}
                 >
-                  <h5 style={{ fontStyle: "bolder", color:'' }} className="card-title">
-                    {product.name.substring(0, 32)}
+                  <h5
+                    style={{ fontStyle: "bolder", color: "" }}
+                    className="card-title"
+                  >
+                    {product.name.substring(0, 33)}
                     {product.name.length > 48 ? "..." : ""}
                   </h5>
                   <p style={{ fontStyle: "italic" }} className="card-text">
@@ -153,7 +181,7 @@ const Products = () => {
                   </p>
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item lead">
+                  <li className="list-group-item lead test">
                     {formatCurrency(product.price)}
                   </li>
                 </ul>

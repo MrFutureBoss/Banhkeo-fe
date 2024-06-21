@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 import { Navbar } from "../components";
 import { BACK_END } from "../utils/AppConfig.js";
+
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
@@ -83,7 +84,7 @@ const Product = () => {
                 {product.rating && product.rating.rate}{" "}
                 <i className="fa fa-star"></i>
               </p> */}
-              <h3 className="display-6  my-4">{product.price} VND</h3>
+              <h3 className="display-6  my-4 test">{product.price} VND</h3>
               <p className="lead">{product.description}</p>
               <button
                 className="btn btn-outline-dark"
