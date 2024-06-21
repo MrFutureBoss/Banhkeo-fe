@@ -4,7 +4,12 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const Checkout = () => {
   const state = useSelector((state) => state.handleCart);
-
+  function formatCurrency(amount) {
+    return amount.toLocaleString("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    });
+  }
   const EmptyCart = () => {
     return (
       <div className="container">
@@ -24,7 +29,7 @@ const Checkout = () => {
 
   const ShowCheckout = () => {
     let subtotal = 0;
-    let shipping = 30.0;
+    let shipping = 4000.0;
     let totalItems = 0;
     state.map((item) => {
       return (subtotal += item.price * item.qty);
@@ -46,25 +51,30 @@ const Checkout = () => {
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                       Sản Phẩm ({totalItems})
-                      <span>${Math.round(subtotal)}</span>
+                      <span>{formatCurrency(Math.round(subtotal))}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                       Shipping
-                      <span>${shipping}</span>
+                      <span>${formatCurrency(Math.round(shipping))}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                       <div>
                         <strong>Tổng cộng</strong>
                       </div>
                       <span>
-                        <strong>${Math.round(subtotal + shipping)}</strong>
+                        <strong>
+                          {formatCurrency(Math.round(subtotal + shipping))}
+                        </strong>
                       </span>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div className="col-md-7 col-lg-8" style={{display:'flex',justifyContent:'center'}}>
+            <div
+              className="col-md-7 col-lg-8"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               {/* <div className="card mb-4">
                 <div className="card-header py-3">
                   <h4 className="mb-0">Billing address</h4>
@@ -279,7 +289,11 @@ const Checkout = () => {
                   </form>
                 </div>
               </div> */}
-              <img alt="" style={{height:'fit-content', margin:'auto'}} src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1718928128/Screenshot_2024-06-21_061215_tqy29q.png"/>
+              <img
+                alt=""
+                style={{ height: "fit-content", margin: "auto" }}
+                src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1718928128/Screenshot_2024-06-21_061215_tqy29q.png"
+              />
             </div>
           </div>
         </div>

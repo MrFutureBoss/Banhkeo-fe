@@ -125,19 +125,30 @@ const Products = () => {
               key={product._id}
               className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4"
             >
-              <div className="card text-center h-100" key={product._id}>
+              <div
+                className="card text-center h-100"
+                style={{ background: "#CCCCDF" }}
+                key={product._id}
+              >
                 <img
-                  className="card-img-top p-3"
+                  className="card-img-top"
                   src={product.image}
                   alt="Card"
                   height={300}
+                  style={{ padding: "0px", height: "100%", objectFit: "cover" }}
                 />
-                <div className="card-body">
-                  <h5 className="card-title">
-                    {product.name.substring(0, 48)}
+                <div
+                  className="card-body"
+                  style={{
+                    background: "#B0916E",
+                    color: "white",
+                  }}
+                >
+                  <h5 style={{ fontStyle: "bolder", color:'' }} className="card-title">
+                    {product.name.substring(0, 32)}
                     {product.name.length > 48 ? "..." : ""}
                   </h5>
-                  <p className="card-text">
+                  <p style={{ fontStyle: "italic" }} className="card-text">
                     {product.description.substring(0, 90)}...
                   </p>
                 </div>
