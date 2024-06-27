@@ -180,7 +180,7 @@ const Products = () => {
                   </p>
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item lead test">
+                  <li className="list-group-item lead fw-bold">
                     {formatCurrency(product.price)}
                   </li>
                 </ul>
@@ -208,12 +208,16 @@ const Products = () => {
     );
   };
   return (
-    <>     
-        <img
-          style={{ width: "100%" }}
-          src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1719503398/Screenshot_2024-06-27_224931_w2yhwi.png"
-          alt="banner introduce"
-        />
+    <>
+      <div className="hero border-1 pb-3">
+        <div className="card bg-dark text-white border-0 mx-3">
+          <img
+            style={{ width: "100%" }}
+            src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1719503398/Screenshot_2024-06-27_224931_w2yhwi.png"
+            alt="banner introduce"
+          />
+        </div>
+      </div>
       <div className="container my-3 py-3">
         <div className="row">
           <div className="col-12">

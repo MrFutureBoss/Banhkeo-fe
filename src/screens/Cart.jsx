@@ -43,7 +43,7 @@ const Cart = () => {
 
   const ShowCart = () => {
     let subtotal = 0;
-    let shipping = 4000;
+    let shipping = 0;
     let totalItems = 0;
     state.map((item) => {
       return (subtotal += item.price * item.qty);
@@ -152,10 +152,10 @@ const Cart = () => {
                         Sản phẩm ({totalItems})
                         <span>{formatCurrency(Math.round(subtotal))}</span>
                       </li>
-                      <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                      {/* <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                         Phí ship
                         <span>{formatCurrency(shipping)}</span>
-                      </li>
+                      </li> */}
                       <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                         <div>
                           <strong>Tổng cộng bạn phải trả là:</strong>

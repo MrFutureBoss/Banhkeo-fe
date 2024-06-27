@@ -29,7 +29,7 @@ const Checkout = () => {
 
   const ShowCheckout = () => {
     let subtotal = 0;
-    let shipping = 4000.0;
+    let shipping = 0;
     let totalItems = 0;
     state.map((item) => {
       return (subtotal += item.price * item.qty);
@@ -45,18 +45,18 @@ const Checkout = () => {
             <div className="col-md-5 col-lg-4 order-md-last">
               <div className="card mb-4">
                 <div className="card-header py-3 bg-light">
-                  <h5 className="mb-0">Tất cả đơn hiện tại</h5>
+                  <h5 className="mb-0">Thanh Toán của bạn</h5>
                 </div>
                 <div className="card-body">
                   <ul className="list-group list-group-flush">
-                    <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                    {/* <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                       Sản Phẩm ({totalItems})
                       <span>{formatCurrency(Math.round(subtotal))}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                    </li> */}
+                    {/* <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                       Shipping
                       <span>${formatCurrency(Math.round(shipping))}</span>
-                    </li>
+                    </li> */}
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                       <div>
                         <strong>Tổng cộng</strong>
@@ -291,8 +291,10 @@ const Checkout = () => {
               </div> */}
               <img
                 alt=""
-                style={{ height: "fit-content", margin: "auto" }}
-                src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1718928128/Screenshot_2024-06-21_061215_tqy29q.png"
+                style={{ height: "80%", margin: "0px auto" }}
+                src={`https://api.vietqr.io/image/970422-9704229246313634-mxtKLOi.jpg?accountName=MAI%20NGOC%20TU&amount=${
+                  subtotal + shipping
+                }`}
               />
             </div>
           </div>
@@ -304,8 +306,8 @@ const Checkout = () => {
     <>
       <Navbar />
       <div className="container my-3 py-3">
-        <h1 className="text-center">Thanh Toán</h1>
-        <hr />
+        {/* <h1 className="text-center">Thanh Toán</h1>
+        <hr /> */}
         {state.length ? <ShowCheckout /> : <EmptyCart />}
       </div>
     </>
