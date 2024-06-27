@@ -9,7 +9,7 @@ const Footer = () => {
           backgroundImage: `url('https://res.cloudinary.com/dfkwgsfiy/image/upload/v1718909789/vn-11134210-7r98o-lwn35i63jj6h99_qvjx67.webp')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "400px", // Adjust height as needed
+          minHeight: "350px", // Adjust height as needed
         }}
       >
       </footer>
