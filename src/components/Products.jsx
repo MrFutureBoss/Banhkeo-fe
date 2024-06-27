@@ -4,9 +4,8 @@ import { addCart } from "../redux/action";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
-import {BACK_END} from "../utils/AppConfig.js"
-import './Text.css'
-
+import { BACK_END } from "../utils/AppConfig.js";
+import "./Text.css";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -78,10 +77,10 @@ const Products = () => {
     setFilter(updatedList);
   };
 
-    const filterProduct2 = (cat) => {
-      const updatedList = data.filter((item) => item.special === cat);
-      setFilter(updatedList);
-    };
+  const filterProduct2 = (cat) => {
+    const updatedList = data.filter((item) => item.special === cat);
+    setFilter(updatedList);
+  };
   //category == type
   const ShowProducts = () => {
     return (
@@ -210,6 +209,13 @@ const Products = () => {
   };
   return (
     <>
+      <div className="container my-3 py-3" style={{ width: "100%" }}>
+        <img
+          style={{ width: "100%" }}
+          src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1719502999/2_qwl91s.png"
+          alt="banner introduce"
+        />
+      </div>
       <div className="container my-3 py-3">
         <div className="row">
           <div className="col-12">
