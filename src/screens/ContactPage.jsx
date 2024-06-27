@@ -5,7 +5,7 @@ const ContactPage = () => {
     <>
       <Navbar />
       <div className="container my-3 py-3">
-        <h1 className="text-center">Liên hệ chúng tôi</h1>
+        <h1 className="text-center">Phản hồi chúng tôi</h1>
         <hr />
         <div class="row my-4 h-100">
           <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
@@ -29,7 +29,7 @@ const ContactPage = () => {
                 />
               </div>
               <div class="form  my-3">
-                <label for="Password">Lời nhắn của bạn</label>
+                <label for="Password">Mong muốn của bạn là gì:</label>
                 <textarea
                   rows={5}
                   class="form-control"

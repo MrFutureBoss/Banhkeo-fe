@@ -208,14 +208,12 @@ const Products = () => {
     );
   };
   return (
-    <>
-      <div className="container my-3 py-3" style={{ width: "100%" }}>
+    <>     
         <img
           style={{ width: "100%" }}
-          src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1719502999/2_qwl91s.png"
+          src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1719503398/Screenshot_2024-06-27_224931_w2yhwi.png"
           alt="banner introduce"
         />
-      </div>
       <div className="container my-3 py-3">
         <div className="row">
           <div className="col-12">

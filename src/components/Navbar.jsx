@@ -51,7 +51,7 @@ const Navbar = () => {
             </li> */}
             <li className="nav-item">
               <NavLink className="nav-link" to="/contact">
-                Liên hệ
+                Phản hồi
               </NavLink>
             </li>
           </ul>
