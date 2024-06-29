@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
-
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
+import QrModal from "./QrModal";
+import { v4 as uuidv4 } from "uuid";
 const Cart = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const [postData, setPostData] = useState({
+    customerName: "",
+    customerPhone: "",
+    customerAddress: "",
+    receiverName: "",
+    receiverPhone: "",
+    totalProfit: totalProf,
+    total: total,
+    status: false,
+    voucher: "",
+    note: "",
+    listCart: cart,
+    shippingType: "Giao hàng tận nơi",
+  });
+
   const state = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
 
@@ -101,18 +122,20 @@ const Cart = () => {
                                     removeItem(item);
                                   }}
                                 >
-                                  <i className="fas fa-minus">-</i>
+                                  <i className="fas fa-minus">
+                                    <FaMinus />
+                                  </i>
                                 </button>
 
                                 <p
-                                  className="mx-5"
+                                  className="m-auto"
                                   style={{
-                                    height: "fit-content",
-                                    textAlign: "center",
+                                    height: "100",
+                                    justifyContent: "center",
                                     fontSize: "20px",
                                   }}
                                 >
-                                  {item.qty} Cái
+                                  {item.qty}
                                 </p>
 
                                 <button
@@ -121,17 +144,32 @@ const Cart = () => {
                                     addItem(item);
                                   }}
                                 >
-                                  <i className="fas fa-plus">+</i>
+                                  <i className="fas fa-plus">
+                                    <FaPlus />
+                                  </i>
                                 </button>
                               </div>
-
-                              <p className="text-start text-md-center">
-                                <strong>
-                                  <span className="text-muted">{item.qty}</span>{" "}
-                                  x {formatCurrency(item.price)}
-                                </strong>
-                              </p>
                             </div>
+                            <p
+                              className="text-end"
+                              style={{ marginTop: "10px" }}
+                            >
+                              <strong>
+                                <span className="text-muted">{item.qty}</span> x{" "}
+                                {formatCurrency(item.price)}
+                              </strong>
+                            </p>
+                            <p
+                              className="text-end"
+                              style={{ marginTop: "10px" }}
+                            >
+                              <strong>
+                                <span className="text-muted">
+                                  Tổng cộng:{" "}
+                                  {formatCurrency(item.qty * item.price)}
+                                </span>
+                              </strong>
+                            </p>
                           </div>
 
                           <hr className="my-4" />
@@ -149,8 +187,8 @@ const Cart = () => {
                   <div className="card-body">
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                        Sản phẩm ({totalItems})
-                        <span>{formatCurrency(Math.round(subtotal))}</span>
+                        Số lượng:
+                        <span>{totalItems} sản phẩm</span>
                       </li>
                       {/* <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                         Phí ship
@@ -174,6 +212,9 @@ const Cart = () => {
                     >
                       Mua thôi ❤️
                     </Link>
+                    <form action="/create-payment-link" method="post">
+                      <button>Mua</button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -192,6 +233,13 @@ const Cart = () => {
         <hr />
         {state.length > 0 ? <ShowCart /> : <EmptyCart />}
       </div>
+      <QrModal
+        show={showPopup}
+        setShow={setShowPopup}
+        total={totalAmount}
+        uuid={uuidv4()}
+        postData={postData}
+      />
     </>
   );
 };

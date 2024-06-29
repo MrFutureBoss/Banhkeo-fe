@@ -11,6 +11,7 @@ const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [similarProducts, setSimilarProducts] = useState([]);
+  const [showSameTypeProducts, setShowSameTypeProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
 
@@ -35,10 +36,18 @@ const Product = () => {
       // );
       const data2 = await response2.json();
       setSimilarProducts(data2);
+      setShowSameTypeProducts(data2);
       setLoading2(false);
     };
     getProduct();
   }, [id]);
+
+  function formatCurrency(amount) {
+    return amount.toLocaleString("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    });
+  }
 
   const Loading = () => {
     return (
@@ -84,7 +93,9 @@ const Product = () => {
                 {product.rating && product.rating.rate}{" "}
                 <i className="fa fa-star"></i>
               </p> */}
-              <h3 className="display-6  my-4 test">{product.price} VND</h3>
+              <h3 className="display-6 my-4">
+                {product.price && formatCurrency(product.price)}
+              </h3>
               <p className="lead">{product.description}</p>
               <button
                 className="btn btn-outline-dark"
@@ -95,6 +106,15 @@ const Product = () => {
               <Link to="/cart" className="btn btn-dark mx-3">
                 Đi tới Giỏ hàng
               </Link>
+            </div>
+          </div>
+          <div className="row">
+            <div className="d-none d-md-block" style={{ marginTop: "20px" }}>
+              <div>
+                <Marquee pauseOnHover={false} pauseOnClick={true} speed={100}>
+                  {loading2 ? <Loading2 /> : <ShowSameTypeProduct />}
+                </Marquee>
+              </div>
             </div>
           </div>
         </div>
@@ -126,11 +146,18 @@ const Product = () => {
   };
 
   const ShowSimilarProduct = () => {
+    const baseProductName =
+      product?.name.split("vị")[0] && product?.name.split("vị")[0];
+
+    const filteredProducts = similarProducts.filter(
+      (item) =>
+        !item.name.includes(baseProductName) && item.name !== product.name
+    );
     return (
       <>
-        <div className="py-4 my-4">
+        <div className="py-4 my-4" style={{ height: "70%" }}>
           <div className="d-flex">
-            {similarProducts.map((item) => {
+            {filteredProducts.map((item) => {
               return (
                 <div key={item._id} className="card mx-4 text-center">
                   <img
@@ -172,6 +199,70 @@ const Product = () => {
       </>
     );
   };
+
+  const ShowSameTypeProduct = () => {
+    const baseProductName =
+      product?.name.split("vị")[0] &&
+      product?.name.split("vị")[0] &&
+      product?.name.split("vị")[0] &&
+      product?.name.split("vị")[0];
+
+    // Lọc danh sách sản phẩm tương tự
+    const filteredProducts = showSameTypeProducts.filter(
+      (item) =>
+        item.name.includes(baseProductName) && item.name !== product.name
+    );
+    return (
+      <>
+        <div
+          className="py-4 my-4"
+          style={{ display: filteredProducts.length === 0 ? "none" : "block" }}
+        >
+          <h2 className="">Sản phẩm cùng loại</h2>
+          <div className="d-flex">
+            {filteredProducts.map((item) => {
+              return (
+                <div key={item._id} className="card mx-4 text-center">
+                  <img
+                    className="card-img-top"
+                    src={item.image}
+                    alt="Card"
+                    height={300}
+                    width={300}
+                  />
+                  {/* <p>{baseProductName}</p> */}
+                  <div className="card-body">
+                    <h5 className="card-title">
+                      {item.name.substring(0, 28)}...
+                    </h5>
+                  </div>
+                  {/* <ul className="list-group list-group-flush">
+                    <li className="list-group-item lead">${product.price}</li>
+                  </ul> */}
+                  <div className="card-body">
+                    <Link
+                      to={"/product/" + item._id}
+                      className="btn btn-dark m-1"
+                      style={{ backgroundColor: "darkblue" }}
+                    >
+                      Mua ngay
+                    </Link>
+                    <button
+                      className="btn m-1"
+                      onClick={() => addProduct(item)}
+                      style={{ backgroundColor: "#B8860B", color: "white" }}
+                    >
+                      Thêm vào giỏ hàng
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </>
+    );
+  };
   return (
     <>
       <Navbar />
@@ -180,7 +271,7 @@ const Product = () => {
         <div className="row my-5 py-5">
           <div className="d-none d-md-block">
             <h2 className="">Bạn cũng có thể thích nó (sản phẩm tương tự)</h2>
-            <Marquee pauseOnHover={true} pauseOnClick={true} speed={50}>
+            <Marquee pauseOnHover={false} pauseOnClick={true} speed={50}>
               {loading2 ? <Loading2 /> : <ShowSimilarProduct />}
             </Marquee>
           </div>

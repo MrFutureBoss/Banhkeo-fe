@@ -2,6 +2,8 @@ import React from "react";
 import { Navbar } from "../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
+
 const Checkout = () => {
   const state = useSelector((state) => state.handleCart);
   function formatCurrency(amount) {
