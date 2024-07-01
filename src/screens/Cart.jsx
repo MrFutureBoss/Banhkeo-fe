@@ -7,6 +7,14 @@ import { TiShoppingCart } from "react-icons/ti";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import QrModal from "./QrModal";
+import { FaUserEdit } from "react-icons/fa";
+import { FaPhoneVolume } from "react-icons/fa";
+import { GrMapLocation } from "react-icons/gr";
+import { MdOutlineAlternateEmail } from "react-icons/md";
+import { FaShippingFast } from "react-icons/fa";
+import { CiReceipt } from "react-icons/ci";
+
+
 import { v4 as uuidv4 } from "uuid";
 const Cart = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -28,14 +36,14 @@ const Cart = () => {
     listCart: state,
     shippingType: "Giao hàng tận nơi",
   });
- 
+
   useEffect(() => {
     setPostData({
       ...postData,
       total: Number(subtotal),
       listCart: state,
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   const EmptyCart = () => {
@@ -74,8 +82,6 @@ const Cart = () => {
     setShowPopup(true);
   };
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     openPopup();
@@ -97,7 +103,7 @@ const Cart = () => {
         <section className="h-100 gradient-custom">
           <div className="container py-5">
             <div className="row d-flex justify-content-center my-4">
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <div className="card mb-4">
                   <div className="card-header py-3">
                     <h5 className="mb-0">Danh sách sản phẩm</h5>
@@ -198,10 +204,15 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
-                <div className="card mb-4">
+              <div className="col-md-5">
+                <div className="card mb-4 row">
                   <div className="card-header py-3 bg-light">
-                    <h5 className="mb-0">Đơn của bạn</h5>
+                    <h5 className="mb-0">
+                      <CiReceipt
+                        style={{ color: "#808080", fontSize: "35px" }}
+                      />
+                      Đơn của bạn
+                    </h5>
                   </div>
                   <form className="card-body" onSubmit={handleSubmit}>
                     <ul className="list-group list-group-flush">
@@ -231,12 +242,98 @@ const Cart = () => {
                     >
                       Mua thôi ❤️
                     </Link> */}
-                    <button
+                    {/* <button
+                        className="btn btn-dark btn-lg btn-block"
+                        type="submit"
+                      >
+                        Mua thôi ❤️
+                      </button> */}
+                  </form>
+                </div>
+                <div className="card mb-4 row">
+                  <div className="card-header py-3">
+                    <h5 className="mb-0">
+                      <FaShippingFast
+                        style={{ color: "#DAA520", fontSize: "35px" }}
+                      />{" "}
+                      Nhập thông tin trước khi thanh toán nào
+                    </h5>
+                  </div>
+                  <form className="card-body" onSubmit={handleSubmit}>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item border-0 px-0 pb-0">
+                        <label style={{ width: "100%" }} htmlFor="">
+                          <FaUserEdit style={{ color: "#A9A9A9" }} /> Họ và Tên:
+                          <span className="text-danger">*</span>
+                        </label>
+                        <input
+                          style={{ width: "100%" }}
+                          type="text"
+                          class="form-control"
+                          placeholder="Nhập họ và tên"
+                          required
+                        ></input>
+                      </li>
+                      <li className="list-group-item border-0 px-0 pb-0">
+                        <label style={{ width: "100%" }} htmlFor="">
+                          <FaPhoneVolume style={{ color: "green" }} />
+                          &nbsp;Liên hệ:
+                          <span className="text-danger">*</span>
+                        </label>
+                        <input
+                          style={{ width: "100%" }}
+                          type="text"
+                          class="form-control"
+                          placeholder="Nhập số điện thoại"
+                          required
+                        ></input>
+                      </li>
+                      <li className="list-group-item border-0 px-0 mb-0">
+                        <label style={{ width: "100%" }} htmlFor="">
+                          <MdOutlineAlternateEmail
+                            style={{ color: "#1E90FF" }}
+                          />{" "}
+                          Email:
+                          <span className="text-danger">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          style={{ width: "100%" }}
+                          placeholder="Nhập email"
+                          required
+                        ></input>
+                      </li>
+                      <li className="list-group-item border-0 px-0 mb-0">
+                        <label style={{ width: "100%" }} htmlFor="">
+                          <GrMapLocation style={{ color: "DarkRed" }} /> Địa chỉ
+                          giao hàng:
+                          <span className="text-danger">*</span>
+                        </label>
+                        <textarea
+                          type="text"
+                          class="form-control"
+                          style={{ width: "100%", height: "100px" }}
+                          placeholder="Nhập địa chỉ"
+                          required
+                        />
+                      </li>
+                    </ul>
+
+                    {/* <Link
+                      to="/checkout"
                       className="btn btn-dark btn-lg btn-block"
-                      type="submit"
                     >
                       Mua thôi ❤️
-                    </button>
+                    </Link> */}
+                    <div className="d-flex justify-content-center">
+                      <button
+                        className="btn btn-dark btn-lg btn-block"
+                        type="submit"
+                      >
+                        Mua thôi ❤️
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>
