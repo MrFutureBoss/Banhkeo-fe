@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Thank from "./Thank";
-import { BACK_END_HOST } from "../utils/AppConfig.js";
-import { useDispatch } from "react-redux";
+// import { BACK_END_HOST } from "../utils/AppConfig.js";
+// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearProduct } from "../redux/Slices/cartSlice.js";
-import axios from "axios";
+// // import { clearProduct } from "../redux/Slices/cartSlice.js";
+// import axios from "axios";
 import Swal from "sweetalert2";
 
 const QrModal = (props) => {
   const { show, setShow, total, uuid, postData, ...rest } = props;
   const bank = {
     BANK_ID: "MBBank",
-    ACCOUNT_NO: "9808650655130",
+    ACCOUNT_NO: "0345919996",
     TEMPLATE: "compact2",
     AMOUNT: total,
     DESCRIPTION: uuid,
-    ACCOUNT_NAME: "LAI NGOC LAM",
+    ACCOUNT_NAME: "MAI NGOC TU",
   };
 
   const api_get = "https://oauth.casso.vn/v2/transactions?sort=DESC";
   const CASSO_API_KEY =
-    "AK_CS.6c00f2a0254411efa25ac5d284bd6c82.WbdVdrlkMT3EL8CGiuySVdTZ8CaF2xTkUQ6Vl3tdr34tzsqtz7zz44EKskJWETvG5LhC4gWN";
+    "AK_CS.0b6c9e80354811efb7127b03250987c0.ZnXRITph6WUlCTcdovCSLoVYzOv2CIv6hl1xvhhEGi9hkSr2YKNpFLM0D4qjTZA3vLrnU3rK";
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [data, setData] = useState({});
@@ -48,7 +48,12 @@ const QrModal = (props) => {
           Math.floor(trans.amount) >= Math.floor(total) &&
           trans.description.includes(uuid.replace(/-/g, ""))
         ) {
-          saveOrder();
+          // saveOrder();
+          setIsPaid(true);
+          toast.success("Thanh toán thành công ❤️\nCảm ơn bạn");
+          setTimeout(() => {
+            navigate("/");
+          }, 4000);
           return;
         }
       });
@@ -70,24 +75,24 @@ const QrModal = (props) => {
     }
   }, [show, isPaid]);
 
-  const saveOrder = async () => {
-    axios
-      .post(`${BACK_END_HOST}/order`, postData)
-      .then((res) => {
-        setIsPaid(true);
-        toast.success("Thanh toán thành công ❤️\nCảm ơn bạn");
-        dispatch(clearProduct());
-        setTimeout(() => {
-          navigate("/");
-        }, 4000);
-      })
-      .catch((error) => {
-        console.log("saveOrder error:", error);
-        toast.error(
-          "Có lỗi gì đó đã xảy ra!😭\nVui lòng liên hệ admin qua facebook/zalo/sdt"
-        );
-      });
-  };
+  // const saveOrder = async () => {
+  //   axios
+  //     .post(`${BACK_END_HOST}/order`, postData)
+  //     .then((res) => {
+  //       setIsPaid(true);
+  //       toast.success("Thanh toán thành công ❤️\nCảm ơn bạn");
+  //       dispatch(clearProduct());
+  //       setTimeout(() => {
+  //         navigate("/");
+  //       }, 4000);
+  //     })
+  //     .catch((error) => {
+  //       console.log("saveOrder error:", error);
+  //       toast.error(
+  //         "Có lỗi gì đó đã xảy ra!😭\nVui lòng liên hệ admin qua facebook/zalo/sdt"
+  //       );
+  //     });
+  // };
 
   const handleClose = () => {
     Swal.fire({
@@ -128,36 +133,34 @@ const QrModal = (props) => {
           //         </Button>
           //     </Modal.Footer>
           // </div>
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-5 rounded-lg">
-              <h2 className="text-lg font-semibold mb-3">Thanh toán</h2>
-              <div className="flex justify-center">
+          <div className="position-fixed top-0 bottom-0 start-0 end-0 d-flex align-items-center justify-content-center bg-black bg-opacity-50">
+            <div className="bg-white p-5 rounded">
+              <h2 className="h5 fw-semibold mb-3">Thanh toán</h2>
+              <div className="d-flex justify-content-center">
                 <img
                   src={`https://img.vietqr.io/image/${bank.BANK_ID}-${bank.ACCOUNT_NO}-${bank.TEMPLATE}.png?amount=${bank.AMOUNT}&addInfo=${bank.DESCRIPTION}&accountName=${bank.ACCOUNT_NAME}`}
                   alt="Error"
-                  width={"50%%"}
+                  className="w-50"
                 />
               </div>
-
               <div className="mt-5">
                 <div className="mb-4">
                   <label
-                    className="block text-gray-700 font-semibold mb-2"
+                    className="form-label fw-semibold mb-2"
                     htmlFor="cardNumber"
                   >
                     Lưu ý: Không chỉnh sửa nội dung chuyển khoản các bạn nhée
                   </label>
-                  <p className="text-red-700">
+                  <p className="text-danger">
                     Quá trình nhận nhận đơn có thể mất 2-3 phút sau chuyển
                     khoản, quý khách vui lòng không tắt popup này !!!
                   </p>
                 </div>
-                <div className="flex justify-between">
+                <div className="d-flex justify-content-between">
                   <div></div>
-
                   <button
                     onClick={handleClose}
-                    className="bg-red-700 hover:bg-purple-50 rounded-lg text-white transition duration-300 ease-linear border-2 border-red-700 font-bold hover:text-red-700 px-4 py-2"
+                    className="btn btn-danger fw-bold border border-danger px-4 py-2"
                   >
                     Hủy thanh toán
                   </button>

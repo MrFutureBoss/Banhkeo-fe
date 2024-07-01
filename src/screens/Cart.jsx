@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
@@ -11,6 +11,9 @@ import { v4 as uuidv4 } from "uuid";
 const Cart = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const state = useSelector((state) => state.handleCart) || [];
+  const dispatch = useDispatch();
+  const subtotal = state.reduce((acc, item) => acc + item.price * item.qty, 0);
 
   const [postData, setPostData] = useState({
     customerName: "",
@@ -18,17 +21,21 @@ const Cart = () => {
     customerAddress: "",
     receiverName: "",
     receiverPhone: "",
-    totalProfit: totalProf,
-    total: total,
+    total: subtotal,
     status: false,
     voucher: "",
     note: "",
-    listCart: cart,
+    listCart: state,
     shippingType: "Giao hàng tận nơi",
   });
 
-  const state = useSelector((state) => state.handleCart);
-  const dispatch = useDispatch();
+  useEffect(() => {
+    setPostData({
+      ...postData,
+      total: Number(subtotal),
+      listCart: state,
+    });
+  }, [state]);
 
   const EmptyCart = () => {
     return (
@@ -61,6 +68,19 @@ const Cart = () => {
       currency: "VND",
     });
   }
+
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    openPopup();
+  };
 
   const ShowCart = () => {
     let subtotal = 0;
@@ -184,7 +204,7 @@ const Cart = () => {
                   <div className="card-header py-3 bg-light">
                     <h5 className="mb-0">Đơn của bạn</h5>
                   </div>
-                  <div className="card-body">
+                  <form className="card-body" onSubmit={handleSubmit}>
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                         Số lượng:
@@ -212,12 +232,21 @@ const Cart = () => {
                     >
                       Mua thôi ❤️
                     </Link>
-                    <form action="/create-payment-link" method="post">
-                      <button>Mua</button>
-                    </form>
-                  </div>
+                    <button
+                      type="submit"
+                    >
+                      Mua
+                    </button>
+                  </form>
                 </div>
               </div>
+            </div>
+            <div className="row d-flex justify-content-center my-4">
+              {showSuccess && (
+                <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg text-xl font-semibold transition-opacity duration-300">
+                  Thanh toán thành công!
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -236,7 +265,7 @@ const Cart = () => {
       <QrModal
         show={showPopup}
         setShow={setShowPopup}
-        total={totalAmount}
+        total={subtotal}
         uuid={uuidv4()}
         postData={postData}
       />
