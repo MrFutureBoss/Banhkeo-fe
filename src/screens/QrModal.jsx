@@ -19,7 +19,7 @@ const QrModal = (props) => {
     DESCRIPTION: uuid,
     ACCOUNT_NAME: "MAI NGOC TU",
   };
-
+ console.log(rest);
   const api_get = "https://oauth.casso.vn/v2/transactions?sort=DESC";
   const CASSO_API_KEY =
     "AK_CS.0b6c9e80354811efb7127b03250987c0.ZnXRITph6WUlCTcdovCSLoVYzOv2CIv6hl1xvhhEGi9hkSr2YKNpFLM0D4qjTZA3vLrnU3rK";
@@ -29,7 +29,7 @@ const QrModal = (props) => {
 
   const [data, setData] = useState({});
   const [isPaid, setIsPaid] = useState(false);
-
+console.log(data)
   const fetchData = async () => {
     try {
       const res = await fetch(api_get, {

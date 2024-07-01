@@ -10,7 +10,7 @@ import QrModal from "./QrModal";
 import { v4 as uuidv4 } from "uuid";
 const Cart = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  // const [showSuccess, setShowSuccess] = useState(false);
   const state = useSelector((state) => state.handleCart) || [];
   const dispatch = useDispatch();
   const subtotal = state.reduce((acc, item) => acc + item.price * item.qty, 0);
@@ -232,21 +232,24 @@ const Cart = () => {
                     >
                       Mua thôi ❤️
                     </Link>
-                    <button
-                      type="submit"
-                    >
-                      Mua
-                    </button>
+                    <button type="submit">Mua</button>
                   </form>
                 </div>
               </div>
             </div>
             <div className="row d-flex justify-content-center my-4">
-              {showSuccess && (
-                <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg text-xl font-semibold transition-opacity duration-300">
+              {/* {showSuccess && (
+                <div
+                  className="position-fixed top-0 end-0 bg-success text-white px-4 py-3 rounded shadow-lg fs-5 fw-semibold"
+                  style={{
+                    top: "1rem",
+                    right: "1rem",
+                    transition: "opacity 0.3s",
+                  }}
+                >
                   Thanh toán thành công!
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </section>
