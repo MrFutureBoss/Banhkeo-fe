@@ -225,13 +225,18 @@ const Cart = () => {
                       </li>
                     </ul>
 
-                    <Link
+                    {/* <Link
                       to="/checkout"
                       className="btn btn-dark btn-lg btn-block"
                     >
                       Mua thôi ❤️
-                    </Link>
-                    <button type="submit">Mua</button>
+                    </Link> */}
+                    <button
+                      className="btn btn-dark btn-lg btn-block"
+                      type="submit"
+                    >
+                      Mua thôi ❤️
+                    </button>
                   </form>
                 </div>
               </div>
