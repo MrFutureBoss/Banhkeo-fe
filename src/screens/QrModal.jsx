@@ -30,6 +30,7 @@ const QrModal = (props) => {
   const [data, setData] = useState({});
   const [isPaid, setIsPaid] = useState(false);
 console.log(data)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchData = async () => {
     try {
       const res = await fetch(api_get, {
@@ -73,7 +74,7 @@ console.log(data)
       //clear khi component bi huy
       return () => clearInterval(intervalId);
     }
-  }, [show, isPaid]);
+  }, [show, isPaid, fetchData]);
 
   // const saveOrder = async () => {
   //   axios

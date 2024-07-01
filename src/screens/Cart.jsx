@@ -28,13 +28,14 @@ const Cart = () => {
     listCart: state,
     shippingType: "Giao hàng tận nơi",
   });
-
+ 
   useEffect(() => {
     setPostData({
       ...postData,
       total: Number(subtotal),
       listCart: state,
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   const EmptyCart = () => {
@@ -73,9 +74,7 @@ const Cart = () => {
     setShowPopup(true);
   };
 
-  const closePopup = () => {
-    setShowPopup(false);
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
