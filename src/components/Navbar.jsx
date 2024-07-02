@@ -25,7 +25,7 @@ const Header = () => {
               md={4}
               className="d-flex align-items-center justify-content-center"
             >
-              <Navbar.Brand className="navbar-brand fw-bold fs-4 px-2" href="/">
+              <Navbar.Brand className="navbar-brand fw-bold fs-4 px-2" to="/">
                 <img
                   src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1718877437/logo_n74mhd.jpg"
                   alt="Ha Tung logo"
@@ -47,13 +47,28 @@ const Header = () => {
               <Navbar.Collapse id="responsive-navbar-nav">
                 <div className="buttons text-center w-100 d-flex align-items-center justify-content-center">
                   <Nav
-                    className="d-flex align-items-center justify-content-center w-100"
+                    className="d-flex align-items-center justify-content-center w-100 gap-3"
                     style={{ maxHeight: "100px" }}
                     navbarScroll
                   >
-                    <Nav.Link href="/">Trang chủ</Nav.Link>
-                    <Nav.Link href="/product">Sản phẩm</Nav.Link>
-                    <Nav.Link href="/contact">Phản hồi</Nav.Link>
+                    <NavLink
+                      style={{ textDecoration: "none", color: "#000" }}
+                      to="/"
+                    >
+                      Trang chủ
+                    </NavLink>
+                    <NavLink
+                      style={{ textDecoration: "none", color: "#000" }}
+                      to="/product"
+                    >
+                      Sản phẩm
+                    </NavLink>
+                    <NavLink
+                      style={{ textDecoration: "none", color: "#000" }}
+                      to="/contact"
+                    >
+                      Phản hồi
+                    </NavLink>
                   </Nav>
                 </div>
               </Navbar.Collapse>
