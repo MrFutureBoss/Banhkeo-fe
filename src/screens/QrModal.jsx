@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Thank from "./Thank";
-// import { BACK_END_HOST } from "../utils/AppConfig.js";
+import { BACK_END } from "../utils/AppConfig.js";
 // import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // // import { clearProduct } from "../redux/Slices/cartSlice.js";
-// import axios from "axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 
 const QrModal = (props) => {
@@ -23,6 +23,7 @@ const QrModal = (props) => {
   const api_get = "https://oauth.casso.vn/v2/transactions?sort=DESC";
   const CASSO_API_KEY =
     "AK_CS.0b6c9e80354811efb7127b03250987c0.ZnXRITph6WUlCTcdovCSLoVYzOv2CIv6hl1xvhhEGi9hkSr2YKNpFLM0D4qjTZA3vLrnU3rK";
+
 
   // const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ console.log(data)
           Math.floor(trans.amount) >= Math.floor(total) &&
           trans.description.includes(uuid.replace(/-/g, ""))
         ) {
-          // saveOrder();
+          saveOrder();
           setIsPaid(true);
           toast.success("Thanh toán thành công ❤️\nCảm ơn bạn");
           setTimeout(() => {
@@ -76,24 +77,23 @@ console.log(data)
     }
   }, [show, isPaid, fetchData]);
 
-  // const saveOrder = async () => {
-  //   axios
-  //     .post(`${BACK_END_HOST}/order`, postData)
-  //     .then((res) => {
-  //       setIsPaid(true);
-  //       toast.success("Thanh toán thành công ❤️\nCảm ơn bạn");
-  //       dispatch(clearProduct());
-  //       setTimeout(() => {
-  //         navigate("/");
-  //       }, 4000);
-  //     })
-  //     .catch((error) => {
-  //       console.log("saveOrder error:", error);
-  //       toast.error(
-  //         "Có lỗi gì đó đã xảy ra!😭\nVui lòng liên hệ admin qua facebook/zalo/sdt"
-  //       );
-  //     });
-  // };
+  const saveOrder = async () => {
+    axios
+      .post(`${BACK_END}/bill/create`, postData)
+      .then((res) => {
+        setIsPaid(true);
+        toast.success("Thanh toán thành công ❤️\nCảm ơn bạn");
+        setTimeout(() => {
+          navigate("/");
+        }, 4000);
+      })
+      .catch((error) => {
+        console.log("saveOrder error:", error);
+        toast.error(
+          "Có lỗi gì đó đã xảy ra!😭\nVui lòng liên hệ admin qua facebook/zalo/sdt"
+        );
+      });
+  };
 
   const handleClose = () => {
     Swal.fire({

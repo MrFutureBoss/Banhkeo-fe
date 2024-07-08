@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
+    "@coreui/coreui": "^5.0.2",
+    "@coreui/react": "^5.1.0",
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.17.0",

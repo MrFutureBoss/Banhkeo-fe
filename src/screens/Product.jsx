@@ -49,6 +49,17 @@ const Product = () => {
     });
   }
 
+  const formatDescription = (description) => {
+    // Kiểm tra nếu description không tồn tại hoặc là undefined
+    if (!description) return null;
+
+    // Tách văn bản thành các dòng bằng cách tách theo ký tự '\n'
+    const lines = description.split("\n");
+
+    // Sử dụng map để hiển thị từng dòng
+    return lines.map((line, index) => <p key={index}>{line}</p>);
+  };
+
   const Loading = () => {
     return (
       <>
@@ -96,7 +107,7 @@ const Product = () => {
               <h3 className="display-6 my-4">
                 {product.price && formatCurrency(product.price)}
               </h3>
-              <p className="lead">{product.description}</p>
+              <p className="lead">{formatDescription(product.description)}</p>
               <button
                 className="btn btn-outline-dark"
                 onClick={() => addProduct(product)}
@@ -210,7 +221,8 @@ const Product = () => {
     // Lọc danh sách sản phẩm tương tự
     const filteredProducts = showSameTypeProducts.filter(
       (item) =>
-        item.name.includes(baseProductName) && item.name !== product.name
+        item.name.includes(baseProductName) &&
+        item.name !== product.name
     );
     return (
       <>

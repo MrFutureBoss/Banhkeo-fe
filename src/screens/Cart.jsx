@@ -22,21 +22,20 @@ const Cart = () => {
   const state = useSelector((state) => state.handleCart) || [];
   const dispatch = useDispatch();
   const subtotal = state.reduce((acc, item) => acc + item.price * item.qty, 0);
-
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
   const [postData, setPostData] = useState({
-    customerName: "",
-    customerPhone: "",
-    customerAddress: "",
-    receiverName: "",
-    receiverPhone: "",
+    name: name,
+    email: email,
+    phone: phone,
+    location: location,
     total: subtotal,
-    status: false,
-    voucher: "",
-    note: "",
     listCart: state,
-    shippingType: "Giao hàng tận nơi",
+    seri: uuidv4(),
   });
-
+ console.log("State:"+ state);
   useEffect(() => {
     setPostData({
       ...postData,
@@ -84,6 +83,16 @@ const Cart = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const updatedPostData = {
+      ...postData,
+      name,
+      email,
+      phone,
+      location,
+      total: subtotal,
+      listCart: state,
+    };
+    setPostData(updatedPostData);
     openPopup();
   };
 
@@ -271,6 +280,8 @@ const Cart = () => {
                           type="text"
                           class="form-control"
                           placeholder="Nhập họ và tên"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
                           required
                         ></input>
                       </li>
@@ -285,6 +296,8 @@ const Cart = () => {
                           type="text"
                           class="form-control"
                           placeholder="Nhập số điện thoại"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
                           required
                         ></input>
                       </li>
@@ -301,6 +314,8 @@ const Cart = () => {
                           class="form-control"
                           style={{ width: "100%" }}
                           placeholder="Nhập email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                           required
                         ></input>
                       </li>
@@ -315,6 +330,8 @@ const Cart = () => {
                           class="form-control"
                           style={{ width: "100%", height: "100px" }}
                           placeholder="Nhập địa chỉ"
+                          value={location}
+                          onChange={(e) => setLocation(e.target.value)}
                           required
                         />
                       </li>

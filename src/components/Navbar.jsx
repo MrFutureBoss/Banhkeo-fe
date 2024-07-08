@@ -15,6 +15,7 @@ const Header = () => {
         style={{
           background:
             "rgb(255,255,255) linear-gradient(90deg, rgba(255,255,255,1) 17%, rgba(251,251,254,1) 34%, rgba(204,204,223,1) 91%)",
+          height: "15vh",
         }}
         className="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top"
       >
@@ -25,7 +26,7 @@ const Header = () => {
               md={4}
               className="d-flex align-items-center justify-content-center"
             >
-              <Navbar.Brand className="navbar-brand fw-bold fs-4 px-2" to="/">
+              <Navbar.Brand className="navbar-brand fw-bold fs-4 px-2" href="/">
                 <img
                   src="https://res.cloudinary.com/dfkwgsfiy/image/upload/v1718877437/logo_n74mhd.jpg"
                   alt="Ha Tung logo"
